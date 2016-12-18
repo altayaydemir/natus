@@ -1,0 +1,15 @@
+# OS X - DS_Store and Editor Files
+.DS_Store
+.idea
+.vscode
+
+# Bundles
+public
+dist
+
+# Logs
+logs
+*.log
+
+# Dependency Directory
+node_modules
