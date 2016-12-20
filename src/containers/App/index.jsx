@@ -1,15 +1,17 @@
 // Core
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 // PropTypes
-const propTypes = {};
+const propTypes = {
+  children: PropTypes.node,
+};
 
 class App extends Component {
   componentDidMount() {}
 
   render() {
     return (
-      <div>App</div>
+      <div>{this.props.children}</div>
     );
   }
 }

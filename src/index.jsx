@@ -1,6 +1,3 @@
-// Config
-import config from 'constants/config';
-
 // Core
 import React from 'react';
 import { render } from 'react-dom';
@@ -14,16 +11,11 @@ import configureStore from 'store';
 // Root Container
 import Root from 'containers/Root';
 
-// Constants
-const env = process.env.NODE_ENV;
-
-// Initialize Helpers
-if (env === 'production') {
-  Raven.config(config.sentryKey).install();
-}
+// Helpers
+import ApiClient from 'helpers/api';
 
 // Initialization
-const store = configureStore(browserHistory);
+const store = configureStore(browserHistory, {}, new ApiClient());
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(

@@ -1,13 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
-// React
+// Core
 import React, { Component, PropTypes } from 'react';
-
-// Redux
 import { Provider } from 'react-redux';
-
-// ReduxToastr
-import ReduxToastr from 'react-redux-toastr';
-import 'react-redux-toastr/lib/css/react-redux-toastr.css';
 
 // Router
 import { applyRouterMiddleware, Router } from 'react-router';
@@ -49,12 +43,6 @@ class Root extends Component {
             routes={getRoutes(store)}
             history={history}
             key={ROUTER_KEY}
-          />
-
-          <ReduxToastr
-            preventDuplicates
-            transitionIn="fadeIn"
-            transitionOut="fadeOut"
           />
         </div>
       </Provider>

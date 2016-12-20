@@ -7,4 +7,7 @@ module.exports = {
   port: process.env.PORT || 8000,
   host: process.env.HOST || 'localhost',
   env: process.env.NODE_ENV || 'development',
+  apiURL: 'https://api.put.io/v2',
+  client_id: 2683,
+  redirect_uri: 'http://localhost:8000/auth',
 };

@@ -4,10 +4,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 
-export default function configureStore(history, initialState, ApiService) {
-  let middlewares = [
+export default function configureStore(history, initialState, ApiClient) {
+  const middlewares = [
     routerMiddleware(history),
-    thunk.withExtraArgument(ApiService),
+    thunk.withExtraArgument(ApiClient),
   ];
 
   let enhancer = composeWithDevTools(applyMiddleware(...middlewares));
