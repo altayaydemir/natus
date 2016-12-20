@@ -38,7 +38,7 @@ $ (yarn or npm) run build
 │   ├── components              # React components.
 │   ├── containers              # React/Redux containers.
 │   ├── constants               # App global config & constants.
-│   ├── helpers                 # Helper functions & components.
+│   ├── helpers                 # Helper classes, functions and components.
 │   ├── components              # Functional stateless React Components.
 │   ├── routes                  # React Router configuration.
 │   └── redux                   # Redux related code, data layer of the app.
