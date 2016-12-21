@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import * as Views from 'containers';
 import { RequireAuth, RequireUnAuth } from 'components';
 
@@ -7,10 +7,22 @@ const getRoutes = () => (
   <Route component={Views.App}>
 
     {/* Protected Routes */}
+    <Route path="/">
+      <IndexRedirect to="/files" />
+    </Route>
+
     <Route
-      path="/"
-      component={RequireAuth(Views.Files)}
-    />
+      path="/files"
+    >
+      <IndexRoute
+        component={RequireAuth(Views.Files)}
+      />
+
+      <Route
+        path=":id"
+        component={RequireAuth(Views.File)}
+      />
+    </Route>
 
     {/* Unprotected Routes */}
     <Route

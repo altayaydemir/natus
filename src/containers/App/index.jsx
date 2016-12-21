@@ -23,7 +23,7 @@ class App extends Component {
 
     return (
       <div>
-        {!isLoaded ? 'loading...' : children}
+        {!isLoaded ? 'loading applicaton...' : children}
       </div>
     );
   }

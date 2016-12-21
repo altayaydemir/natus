@@ -26,6 +26,18 @@ class ApiClient {
     ...options,
   })
 
+  post = (url, body = {}, params = {}, options = {}) => axios({
+    method: 'POST',
+    url,
+    baseURL: this.apiURL,
+    data: body,
+    params: {
+      ...params,
+      oauth_token: localStorage.getItem('token'),
+    },
+    ...options,
+  })
+
 }
 
 export default ApiClient;

@@ -7,10 +7,12 @@ import { reducer as form } from 'redux-form';
 // Internal Reducers
 import app from 'modules/app/reducer';
 import user from 'modules/user/reducer';
+import files from 'modules/files/reducer';
 
 export default combineReducers({
   app,
   user,
+  files,
   routing,
   form,
 });
