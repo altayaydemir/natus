@@ -1,20 +1,22 @@
 import React from 'react';
 import { Route } from 'react-router';
 import * as Views from 'containers';
+import { RequireAuth, RequireUnAuth } from 'components';
 
 const getRoutes = () => (
   <Route component={Views.App}>
-    <Route>
-      <Route
-        path="/"
-        component={Views.Home}
-      />
 
-      <Route
-        path="/auth"
-        component={Views.Auth}
-      />
-    </Route>
+    {/* Protected Routes */}
+    <Route
+      path="/"
+      component={RequireAuth(Views.Files)}
+    />
+
+    {/* Unprotected Routes */}
+    <Route
+      path="/auth"
+      component={RequireUnAuth(Views.Auth)}
+    />
   </Route>
 );
 

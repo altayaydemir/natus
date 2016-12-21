@@ -5,9 +5,11 @@ import { routerReducer as routing } from 'react-router-redux';
 import { reducer as form } from 'redux-form';
 
 // Internal Reducers
+import app from 'modules/app/reducer';
 import user from 'modules/user/reducer';
 
 export default combineReducers({
+  app,
   user,
   routing,
   form,

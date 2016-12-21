@@ -14,6 +14,7 @@ import config from 'config';
 // PropTypes
 const { func, object } = PropTypes;
 const propTypes = {
+  user: object,
   fetchInfo: func,
   location: object,
 };
@@ -39,11 +40,16 @@ class Authenticate extends Component {
   }
 
   render() {
+    const { user: { isLoading } } = this.props;
+
     return (
       <div>
-        <a href={this.authURL}>
-         Authenticate
-        </a>
+        {isLoading ?
+          'Authenticating...' :
+          <a href={this.authURL}>
+           Authenticate
+          </a>
+        }
       </div>
     );
   }
