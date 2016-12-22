@@ -17,8 +17,8 @@ export const getTransfers = (meta = {}, params = {}) => async (dispatch, getStat
   dispatch(getTransfersRequest(meta));
 
   try {
-    const response = await Api.get('/transfers/list', params);
-    return dispatch(getTransfersSuccess(response.data.transfers));
+    const { data: { transfers } } = await Api.get('/transfers/list', params);
+    return dispatch(getTransfersSuccess(transfers));
   } catch (error) {
     return dispatch(getTransfersFailure(error));
   }
@@ -34,8 +34,8 @@ export const getTransfer = (id, params = {}) => async (dispatch, getState, Api) 
   dispatch(getTransferRequest());
 
   try {
-    const response = await Api.get(`/transfers/${id}`, params);
-    return dispatch(getTransferSuccess(response.data));
+    const { data } = await Api.get(`/transfers/${id}`, params);
+    return dispatch(getTransferSuccess(data));
   } catch (error) {
     return dispatch(getTransferFailure(error));
   }
@@ -51,9 +51,9 @@ export const addTransfer = (formData, params = {}) => async (dispatch, getState,
   dispatch(addTransferRequest());
 
   try {
-    const response = await Api.post('/transfers/add', formData, params);
-    dispatch(addTransferSuccess(response.data));
-    return dispatch(push('/transfers'));
+    const { data: { transfer } } = await Api.post('/transfers/add', formData, params);
+    dispatch(addTransferSuccess(transfer));
+    return dispatch(push(`/files/${transfer.save_parent_id}`));
   } catch (error) {
     return dispatch(addTransferFailure(error));
   }

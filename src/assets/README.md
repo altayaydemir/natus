@@ -12,7 +12,7 @@ Contents of this file has global aliases (`styles`, `fonts` and `images`) and co
 
 .Wrapper {
   @include myMagicalMixinThatMakesEverythingLookPerfect();
-  background: $gazer-primary;
+  background: $putio-primary;
 }
 
 ```
@@ -31,4 +31,4 @@ const MyExtremelyMagicalComponent = () => (
 
 ```
 
-Please try to **avoid mixing global assets and local assets** as much as you can :)
+Please try to **avoid mixing global assets and local assets** as much as you can.

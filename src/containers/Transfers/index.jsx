@@ -33,7 +33,7 @@ class Transfers extends Component {
   }
 
   startTransferPolling = () => {
-    this.transferPolling = setInterval(() => this.props.getTransfers({ polling: true }), 3000);
+    this.transferPolling = setInterval(() => this.props.getTransfers({ polling: true }), 10000);
   }
 
   render() {
