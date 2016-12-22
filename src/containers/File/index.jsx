@@ -15,11 +15,8 @@ const propTypes = {
 
 class File extends Component {
   componentDidMount() {
-    const { files: { active: { data } }, params: { id }, getFile } = this.props;
-
-    if (data.id !== id) {
-      getFile(id);
-    }
+    const { params: { id }, getFile } = this.props;
+    getFile(id, { stream_url: true });
   }
 
   render() {
@@ -27,7 +24,9 @@ class File extends Component {
 
     return (
       <div>
-        {active.isLoaded && `File ${active.data.name} (${active.data.id}) is Loaded`}
+        {active.isLoaded &&
+          `File ${active.data.parent.name} (${active.data.parent.id}) is Loaded`
+        }
       </div>
     );
   }

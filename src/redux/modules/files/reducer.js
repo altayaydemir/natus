@@ -1,4 +1,4 @@
-import { GET_FILES, GET_FILE, CREATE_FOLDER } from './types';
+import { GET_FILES, GET_FILE, CREATE_FOLDER, DELETE_FILES } from './types';
 
 const initialState = {
   list: {
@@ -19,6 +19,11 @@ const initialState = {
     isLoading: false,
     error: {},
   },
+  deleting: {
+    isLoading: true,
+    error: {},
+  },
+  createdFolders: [],
 };
 
 export default (state = initialState, action) => {
@@ -93,15 +98,11 @@ export default (state = initialState, action) => {
     case CREATE_FOLDER.SUCCESS:
       return {
         ...state,
-        active: {
-          data: action.payload.data,
-          isLoaded: true,
-          error: {},
-        },
         creating: {
           isLoading: false,
           error: {},
         },
+        createdFolders: [...state.createdFolders, action.payload.data.id],
       };
 
     case CREATE_FOLDER.FAILURE:
@@ -109,6 +110,35 @@ export default (state = initialState, action) => {
         ...state,
         creating: {
           ...state.creating,
+          isLoading: false,
+          error: action.payload.error,
+        },
+      };
+
+    case DELETE_FILES.REQUEST:
+      return {
+        ...state,
+        deleting: {
+          ...state.deleting,
+          isLoading: true,
+        },
+      };
+
+    case DELETE_FILES.SUCCESS:
+      return {
+        ...state,
+        deleting: {
+          isLoading: false,
+          error: {},
+        },
+        createdFolders: state.createdFolders.filter(i => action.payload.data.indexOf(i) < 0),
+      };
+
+    case DELETE_FILES.FAILURE:
+      return {
+        ...state,
+        deleting: {
+          ...state.deleting,
           isLoading: false,
           error: action.payload.error,
         },

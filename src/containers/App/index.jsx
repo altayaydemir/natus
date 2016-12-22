@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // Actions
 import loadApp from 'modules/app/actions';
+import { deleteFiles } from 'modules/files/actions';
 
 // PropTypes
 const { func, object, node } = PropTypes;
@@ -11,11 +12,16 @@ const propTypes = {
   app: object,
   loadApp: func,
   children: node,
+  deleteFiles: func,
 };
 
 class App extends Component {
   componentDidMount() {
-    this.props.loadApp();
+    const { loadApp, deleteFiles } = this.props;
+    loadApp();
+
+    // Bind delete files action to beforeunload event
+    window.onbeforeunload = () => deleteFiles();
   }
 
   render() {
@@ -37,6 +43,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loadApp,
+  deleteFiles,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
