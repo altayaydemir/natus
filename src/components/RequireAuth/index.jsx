@@ -10,11 +10,12 @@ const { func, object } = PropTypes;
 const propTypes = {
   user: object,
   push: func,
+  location: object,
 };
 
 const requireAuth = (ComposedComponent) => {
   class AuthWrapper extends Component {
-    componentWillMount() {
+    componentDidMount() {
       this.checkAuth(this.props.user);
     }
 
@@ -23,8 +24,11 @@ const requireAuth = (ComposedComponent) => {
     }
 
     checkAuth = (state) => {
+      const { push } = this.props;
+
       if (!state.isAuthenticated) {
-        this.props.push('/auth');
+        localStorage.setItem('nextRoute', location.pathname);
+        push('/auth');
       }
     }
 

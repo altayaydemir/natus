@@ -8,11 +8,13 @@ import { reducer as form } from 'redux-form';
 import app from 'modules/app/reducer';
 import user from 'modules/user/reducer';
 import files from 'modules/files/reducer';
+import transfers from 'modules/transfers/reducer';
 
 export default combineReducers({
   app,
   user,
   files,
+  transfers,
   routing,
   form,
 });

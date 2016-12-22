@@ -24,6 +24,14 @@ const getRoutes = () => (
       />
     </Route>
 
+    <Route
+      path="/transfers"
+    >
+      <IndexRoute
+        component={RequireAuth(Views.Transfers)}
+      />
+    </Route>
+
     {/* Unprotected Routes */}
     <Route
       path="/auth"
