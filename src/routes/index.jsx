@@ -3,7 +3,7 @@ import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import * as Views from 'containers';
 import { RequireAuth, RequireUnAuth } from 'components';
 
-const getRoutes = () => (
+export default (
   <Route component={Views.App}>
 
     {/* Protected Routes */}
@@ -44,6 +44,3 @@ const getRoutes = () => (
     />
   </Route>
 );
-
-export default getRoutes;
-

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 // Router
 import { applyRouterMiddleware, Router } from 'react-router';
 import { useScroll } from 'react-router-scroll';
-import getRoutes from 'routes';
+import routes from 'routes';
 
 // PropTypes
 const { object } = PropTypes;
@@ -40,7 +40,7 @@ class Root extends Component {
         <div>
           <Router
             render={applyRouterMiddleware(useScroll())}
-            routes={getRoutes(store)}
+            routes={routes}
             history={history}
             key={ROUTER_KEY}
           />
