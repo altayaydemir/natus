@@ -42,25 +42,6 @@ export const getFile = (id, params = {}) => async (dispatch, getState, Api) => {
 };
 
 // Action Creators: Create Folder
-const createFolderRequest = () => createAction(CREATE_FOLDER.REQUEST);
-const createFolderSuccess = data => createAction(CREATE_FOLDER.SUCCESS, { data });
-const createFolderFailure = error => createAction(CREATE_FOLDER.FAILURE, { error });
-
-// Thunk: Create Folder
-export const createFolder = (formData, params = {}) => async (dispatch, getState, Api) => {
-  dispatch(createFolderRequest());
-
-  try {
-    const { data: { file } } = await Api.post('/files/create-folder', formData, params);
-
-    dispatch(createFolderSuccess(file));
-    return dispatch(push(`/files/${file.id}`));
-  } catch (error) {
-    return dispatch(createFolderFailure(error));
-  }
-};
-
-// Action Creators: Create Folder
 const deleteFilesRequest = () => createAction(DELETE_FILES.REQUEST);
 const deleteFilesSuccess = data => createAction(DELETE_FILES.SUCCESS, { data });
 const deleteFilesFailure = error => createAction(DELETE_FILES.FAILURE, { error });
@@ -79,5 +60,28 @@ export const deleteFiles = (file_ids = [], params = {}) => async (dispatch, getS
     return dispatch(push('/files/'));
   } catch (error) {
     return dispatch(deleteFilesFailure(error));
+  }
+};
+
+// Action Creators: Create Folder
+const createFolderRequest = () => createAction(CREATE_FOLDER.REQUEST);
+const createFolderSuccess = data => createAction(CREATE_FOLDER.SUCCESS, { data });
+const createFolderFailure = error => createAction(CREATE_FOLDER.FAILURE, { error });
+
+// Thunk: Create Folder
+export const createFolder = (formData, params = {}) => async (dispatch, getState, Api) => {
+  dispatch(createFolderRequest());
+
+  try {
+    const { data: { file } } = await Api.post('/files/create-folder', formData, params);
+
+    dispatch(createFolderSuccess(file));
+
+    // Bind delete files action to beforeunload event
+    window.onbeforeunload = () => dispatch(deleteFiles());
+
+    return dispatch(push(`/files/${file.id}`));
+  } catch (error) {
+    return dispatch(createFolderFailure(error));
   }
 };
