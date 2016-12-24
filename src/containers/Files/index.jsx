@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getFiles } from 'modules/files/actions';
 
 // UI
-import { Link } from 'react-router';
+import { FileList } from 'components';
 
 // PropTypes
 const { func, object } = PropTypes;
@@ -25,12 +25,10 @@ class Files extends Component {
 
     return (
       <div>
-        {list.isLoaded ? list.data.files.map(file => (
-          <Link key={file.id} to={`/files/${file.id}`}>
-            {file.name} - {file.id}
-            <br />
-          </Link>
-        )) : 'Loading File List'}
+        <FileList
+          data={list.data}
+          isLoaded={list.isLoaded}
+        />
       </div>
     );
   }

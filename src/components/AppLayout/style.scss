@@ -1,0 +1,10 @@
+@import '~styles/colors';
+
+.App {
+  background: $natus-bg;
+  min-height: 100vh;
+}
+
+.AppContent {
+  padding-bottom: 50px;
+}

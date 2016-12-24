@@ -35,18 +35,23 @@ class Transfers extends Component {
   }
 
   startTransferPolling = () => {
-    this.transferPolling = setInterval(() => this.props.getTransfers({ polling: true }), 10000);
+    this.transferPolling = setInterval(() => {
+      const { transfers: { list: { data } }, getTransfers } = this.props;
+      const unFinishedTransfers = data.filter(transfer => transfer.status !== 'COMPLETED');
+
+      if (unFinishedTransfers.length > 0) {
+        return getTransfers({ polling: true });
+      }
+
+      return false;
+    }, 5000);
   }
 
   render() {
-    const { transfers: { list }, showModal } = this.props;
+    const { transfers: { list } } = this.props;
 
     return (
       <div>
-        <button onClick={() => showModal('ADD_TRANSFER')}>
-          Add Transfer
-        </button>
-
         {list.isLoaded ? list.data.map(transfer => (
           <Link key={transfer.id} to={`/transfers/${transfer.id}`}>
             {transfer.id} || {transfer.name} || {transfer.percent_done}

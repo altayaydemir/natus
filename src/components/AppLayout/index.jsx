@@ -8,6 +8,7 @@ import 'styles/main.scss';
 
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Header, Loader } from 'components';
+import style from './style.scss';
 
 // PropTypes
 const { bool, array, shape, node, object } = PropTypes;
@@ -24,29 +25,32 @@ const propTypes = {
   children: node,
 };
 
-const AppLayout = ({ isLoading, isAuthenticated, routes, children, user, headerActions }) =>
-isLoading ?
-  <Loader size="big" /> : (
-    <section>
-      <Header
-        {...headerActions}
-        isAuthenticated={isAuthenticated}
-        routes={isAuthenticated ? routes.auth : routes.unauth}
-        user={{
-          data: user,
-          menu: routes.user,
-        }}
-      />
+const AppLayout = ({ isLoading, isAuthenticated, routes, children, user, headerActions }) => (
+  <div className={style.App}>
+    {isLoading ?
+      <Loader size="big" /> :
+      <div className={style.AppContent}>
+        <Header
+          {...headerActions}
+          isAuthenticated={isAuthenticated}
+          routes={isAuthenticated ? routes.auth : routes.unauth}
+          user={{
+            data: user,
+            menu: routes.user,
+          }}
+        />
 
-      <Grid>
-        <Row>
-          <Col xs={12}>
-            {children}
-          </Col>
-        </Row>
-      </Grid>
-    </section>
-  );
+        <Grid>
+          <Row>
+            <Col xs={12}>
+              {children}
+            </Col>
+          </Row>
+        </Grid>
+      </div>
+    }
+  </div>
+);
 
 AppLayout.propTypes = propTypes;
 
