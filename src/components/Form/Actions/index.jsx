@@ -27,10 +27,8 @@ const propTypes = {
 // DefaultProps
 const defaultProps = {
   submit: {
-    className: 'btn-success',
-    icon: 'chevron-circle-right',
+    className: 'btn-black',
     busy: false,
-    size: 'small',
   },
 };
 

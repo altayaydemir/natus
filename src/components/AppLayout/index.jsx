@@ -20,13 +20,17 @@ const propTypes = {
     user: array,
   }),
   user: object,
+  headerActions: object,
   children: node,
 };
 
-const AppLayout = ({ isLoading, isAuthenticated, routes, children, user }) => isLoading ?
+const AppLayout = ({ isLoading, isAuthenticated, routes, children, user, headerActions }) =>
+isLoading ?
   <Loader size="big" /> : (
     <section>
       <Header
+        {...headerActions}
+        isAuthenticated={isAuthenticated}
         routes={isAuthenticated ? routes.auth : routes.unauth}
         user={{
           data: user,

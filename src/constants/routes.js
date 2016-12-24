@@ -26,10 +26,5 @@ export default {
       name: 'Account Settings',
       icon: '',
     },
-    {
-      to: '/logout',
-      name: 'Logout',
-      icon: '',
-    },
   ],
 };

@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
 // Actions
-import { getFiles, createFolder } from 'modules/files/actions';
+import { getFiles } from 'modules/files/actions';
 
 // UI
 import { Link } from 'react-router';
@@ -13,60 +13,15 @@ const { func, object } = PropTypes;
 const propTypes = {
   files: object,
   getFiles: func,
-  createFolder: func,
 };
 
 class Files extends Component {
-  constructor() {
-    super();
-    this.folderName = 'Altay';
-    this.state = {
-      countdown: {
-        started: false,
-        timeLeft: 5,
-      },
-    };
-  }
-
   componentDidMount() {
     this.props.getFiles();
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   const { files } = nextProps;
-
-  //   if (!this.props.files.list.isLoaded && files.list.isLoaded) {
-  //     this.startFolderCreationCountdown();
-  //   }
-  // }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  startFolderCreationCountdown = () => {
-    this.setState({ countdown: { ...this.state.countdown, started: true } });
-    this.interval = setInterval(this.countdown, 1000);
-  }
-
-  countdown = () => {
-    const { files: { list: { data } } } = this.props;
-    const { countdown: { timeLeft } } = this.state;
-
-    if (timeLeft <= 5 && timeLeft > 1) {
-      this.setState({ countdown: { ...this.state.countdown, timeLeft: timeLeft - 1 } });
-    }
-
-    if (timeLeft === 1) {
-      clearInterval(this.interval);
-      this.setState({ countdown: { started: false, timeLeft: 5 } });
-      this.props.createFolder({ name: this.folderName, parrent_id: data.parent.id });
-    }
-  }
-
   render() {
-    const { countdown } = this.state;
-    const { files: { list, creating } } = this.props;
+    const { files: { list } } = this.props;
 
     return (
       <div>
@@ -76,14 +31,6 @@ class Files extends Component {
             <br />
           </Link>
         )) : 'Loading File List'}
-
-        <br />
-
-        {countdown.started && `Creating a folder in ${countdown.timeLeft}...`}
-
-        <br />
-
-        {creating.isLoading && `Creating a folder named ${this.folderName} inside root folder!`}
       </div>
     );
   }
@@ -97,7 +44,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getFiles,
-  createFolder,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Files);

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 // Actions
 import loadApp from 'modules/app/actions';
+import { logOut } from 'modules/user/actions';
+import { showModal } from 'modules/ui/actions';
 
 // UI
 import { AppLayout, ModalRoot } from 'components';
@@ -18,6 +20,8 @@ const propTypes = {
   user: object,
   ui: object,
   loadApp: func,
+  showModal: func,
+  logOut: func,
   children: node,
 };
 
@@ -32,6 +36,8 @@ class App extends Component {
       user: { data, isAuthenticated },
       ui: { modal },
       children,
+      showModal,
+      logOut,
     } = this.props;
 
     return (
@@ -40,6 +46,10 @@ class App extends Component {
         isAuthenticated={isAuthenticated}
         routes={ROUTES}
         user={data}
+        headerActions={{
+          onAddTransfer: () => showModal('ADD_TRANSFER'),
+          onLogout: () => logOut(),
+        }}
       >
         {children}
 
@@ -59,6 +69,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loadApp,
+  showModal,
+  logOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

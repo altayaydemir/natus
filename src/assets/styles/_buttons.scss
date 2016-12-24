@@ -9,9 +9,9 @@
 
     &:hover, &:active, &:focus {
       outline: 0!important;
-      background: darken($color, 5);
-      border: darken($color, 5);
-      color: white;
+      background: darken($color, 5)!important;
+      border: darken($color, 5)!important;
+      color: white!important;
     }
   }
 }
@@ -20,6 +20,11 @@
   .btn {
     border-radius: 2px;
     border: 1px solid;
+    font-size: 13px;
+  }
+
+  a:focus, a:active {
+    outline: none!important;
   }
 
   .btn:focus,
@@ -37,4 +42,12 @@
   @include generateButton('success', $natus-green);
   @include generateButton('danger', $natus-red);
   @include generateButton('warning', $natus-yellow);
+
+  .btn-warning {
+    color: $natus-black!important;
+
+    &:hover, &:active, &:focus {
+      color: $natus-black!important;
+    }
+  }
 }

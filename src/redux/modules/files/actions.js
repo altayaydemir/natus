@@ -17,7 +17,7 @@ export const getFiles = (params = {}) => async (dispatch, getState, Api) => {
   dispatch(getFilesRequest());
 
   try {
-    const response = await Api.get('/files/list', params);
+    const response = await Api.get('/files/list', { breadcrumbs: true, ...params });
     return dispatch(getFilesSuccess(response.data));
   } catch (error) {
     return dispatch(getFilesFailure(error));
@@ -34,7 +34,7 @@ export const getFile = (id, params = {}) => async (dispatch, getState, Api) => {
   dispatch(getFileRequest());
 
   try {
-    const response = await Api.get('/files/list', { parent_id: id, ...params });
+    const response = await Api.get('/files/list', { parent_id: id, breadcrumbs: true, ...params });
     return dispatch(getFileSuccess(response.data));
   } catch (error) {
     return dispatch(getFileFailure(error));

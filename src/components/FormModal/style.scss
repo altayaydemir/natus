@@ -27,6 +27,7 @@
 
 .Header {
   background: $natus-black!important;
+  border-top: 2px solid $natus-yellow;
 
   :global(.close) {
     color: white;

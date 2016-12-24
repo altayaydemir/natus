@@ -1,5 +1,6 @@
 // Helpers
 import { createAction } from 'helpers/factories';
+import tokenStorage from 'helpers/tokenStorage';
 
 // Types
 import FETCH_INFO from './types';
@@ -19,6 +20,11 @@ const fetchInfo = () => async (dispatch, getState, Api) => {
   } catch (error) {
     return dispatch(fetchInfoFailure(error));
   }
+};
+
+export const logOut = () => {
+  tokenStorage.destroy();
+  return window.location.reload();
 };
 
 export default fetchInfo;
