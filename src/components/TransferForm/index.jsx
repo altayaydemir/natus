@@ -3,7 +3,10 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 // UI
-import { Input, Checkbox, FormActions } from 'components';
+import { ActionErrors, Input, Checkbox, FormActions } from 'components';
+
+// Helpers
+import validators from 'helpers/validators';
 
 // PropTypes
 const { object, func, bool } = PropTypes;
@@ -11,15 +14,19 @@ const propTypes = {
   status: object,
   handleSubmit: func,
   pristine: bool,
+  submitSucceeded: bool,
 };
 
-const TransferForm = ({ handleSubmit, status, pristine }) => (
+const TransferForm = ({ handleSubmit, status, pristine, submitSucceeded }) => (
   <form onSubmit={handleSubmit}>
+    <ActionErrors visible={submitSucceeded} data={status.error} />
+
     <Field
       name="url"
       component={Input}
       label="URL"
-      // validate={[validators.number]}
+      required
+      validate={[validators.required]}
     />
 
     <Field

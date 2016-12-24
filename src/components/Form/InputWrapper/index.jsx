@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 
 // UI
 import { FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
-import { Icon } from 'components';
+import Icon from 'react-fontawesome';
 import './style.scss';
 
 // PropTypes

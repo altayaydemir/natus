@@ -55,6 +55,6 @@ export const addTransfer = (formData, params = {}) => async (dispatch, getState,
     dispatch(addTransferSuccess(transfer));
     return dispatch(push(`/files/${transfer.save_parent_id}`));
   } catch (error) {
-    return dispatch(addTransferFailure(error));
+    return dispatch(addTransferFailure(error.response.data));
   }
 };

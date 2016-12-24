@@ -81,19 +81,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         adding: {
-          ...state.adding,
           isLoading: true,
+          error: {},
         },
       };
 
     case ADD_TRANSFER.SUCCESS:
       return {
         ...state,
-        active: {
-          data: action.payload.data,
-          isLoaded: true,
-          error: {},
-        },
         adding: {
           isLoading: false,
           error: {},
@@ -104,7 +99,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         adding: {
-          ...state.adding,
           isLoading: false,
           error: action.payload.error,
         },
