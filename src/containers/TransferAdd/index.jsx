@@ -27,8 +27,6 @@ class TransferAdd extends Component {
     const { files: { list: { data: { files } } }, addTransfer } = this.props;
     const recentFolder = files.filter(file => file.content_type === 'application/x-directory')[0];
 
-    console.log(recentFolder);
-
     formData = {
       ...formData,
       save_parent_id: recentFolder.id,

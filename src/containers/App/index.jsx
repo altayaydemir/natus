@@ -6,12 +6,16 @@ import { connect } from 'react-redux';
 import loadApp from 'modules/app/actions';
 
 // UI
-import { Header } from 'components';
+import { AppLayout } from 'components';
+
+// Constants
+import ROUTES from 'constants/routes';
 
 // PropTypes
 const { func, object, node } = PropTypes;
 const propTypes = {
   app: object,
+  user: object,
   loadApp: func,
   children: node,
 };
@@ -22,19 +26,17 @@ class App extends Component {
   }
 
   render() {
-    const { app: { isLoaded }, children } = this.props;
+    const { app: { isLoaded }, user: { data, isAuthenticated }, children } = this.props;
 
     return (
-      <div>
-        {!isLoaded ?
-          'loading applicaton...' :
-          <div>
-            <Header />
-
-            {children}
-          </div>
-        }
-      </div>
+      <AppLayout
+        isLoading={!isLoaded}
+        isAuthenticated={isAuthenticated}
+        routes={ROUTES}
+        user={data}
+      >
+        {children}
+      </AppLayout>
     );
   }
 }
@@ -43,6 +45,7 @@ App.propTypes = propTypes;
 
 const mapStateToProps = state => ({
   app: state.app,
+  user: state.user,
 });
 
 const mapDispatchToProps = {

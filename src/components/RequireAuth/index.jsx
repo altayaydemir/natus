@@ -15,7 +15,7 @@ const propTypes = {
 
 const requireAuth = (ComposedComponent) => {
   class AuthWrapper extends Component {
-    componentDidMount() {
+    componentWillMount() {
       this.checkAuth(this.props.user);
     }
 
@@ -33,8 +33,10 @@ const requireAuth = (ComposedComponent) => {
     }
 
     render() {
+      const { user: { isAuthenticated } } = this.props;
+
       return (
-        <ComposedComponent {...this.props} />
+        isAuthenticated ? <ComposedComponent {...this.props} /> : null
       );
     }
   }

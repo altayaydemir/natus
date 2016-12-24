@@ -32,13 +32,13 @@ class Files extends Component {
     this.props.getFiles();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { files } = nextProps;
+  // componentWillReceiveProps(nextProps) {
+  //   const { files } = nextProps;
 
-    if (!this.props.files.list.isLoaded && files.list.isLoaded) {
-      this.startFolderCreationCountdown();
-    }
-  }
+  //   if (!this.props.files.list.isLoaded && files.list.isLoaded) {
+  //     this.startFolderCreationCountdown();
+  //   }
+  // }
 
   componentWillUnmount() {
     clearInterval(this.interval);

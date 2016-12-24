@@ -1,0 +1,36 @@
+.Wrapper {
+  padding: 5px 0;
+
+  &:global(.navbar) {
+    border-radius: 0;
+    margin-bottom: 0;
+    border: none;
+  }
+
+  :global(.navbar-brand img) {
+    height: 20px;
+  }
+
+  :global(.nav li a) {
+    color: white!important;
+  }
+
+  :global(.dropdown-menu li.active a) {
+    background: transparent;
+  }
+
+  :global(.dropdown-menu li a) {
+    color: black!important;
+  }
+}
+
+.NavDivider {
+  width: 1px;
+  height: 35px;
+  background: white;
+  margin: 8px 15px 0 15px;
+
+  a {
+    display: none;
+  }
+}
