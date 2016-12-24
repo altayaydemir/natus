@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // Actions
 import { getTransfers } from 'modules/transfers/actions';
+import { showModal } from 'modules/ui/actions';
 
 // UI
 import { Link } from 'react-router';
@@ -13,6 +14,7 @@ const { func, object } = PropTypes;
 const propTypes = {
   transfers: object,
   getTransfers: func,
+  showModal: func,
 };
 
 class Transfers extends Component {
@@ -37,10 +39,14 @@ class Transfers extends Component {
   }
 
   render() {
-    const { transfers: { list } } = this.props;
+    const { transfers: { list }, showModal } = this.props;
 
     return (
       <div>
+        <button onClick={() => showModal('ADD_TRANSFER')}>
+          Add Transfer
+        </button>
+
         {list.isLoaded ? list.data.map(transfer => (
           <Link key={transfer.id} to={`/transfers/${transfer.id}`}>
             {transfer.id} || {transfer.name} || {transfer.percent_done}
@@ -60,6 +66,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getTransfers,
+  showModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Transfers);

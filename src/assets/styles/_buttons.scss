@@ -1,0 +1,40 @@
+@import '~styles/colors';
+
+
+@mixin generateButton($name, $color) {
+  .btn-#{$name} {
+    background: $color;
+    border: $color;
+    color: white;
+
+    &:hover, &:active, &:focus {
+      outline: 0!important;
+      background: darken($color, 5);
+      border: darken($color, 5);
+      color: white;
+    }
+  }
+}
+
+:global {
+  .btn {
+    border-radius: 2px;
+    border: 1px solid;
+  }
+
+  .btn:focus,
+  .btn:active:focus,
+  .btn.active:focus,
+  .btn.focus,
+  .btn:active.focus,
+  .btn.active.focus {
+    outline: none!important;
+    background: transparent;
+  }
+
+  @include generateButton('black', $natus-black);
+  @include generateButton('primary', $natus-blue);
+  @include generateButton('success', $natus-green);
+  @include generateButton('danger', $natus-red);
+  @include generateButton('warning', $natus-yellow);
+}

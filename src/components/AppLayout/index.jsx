@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 // UI
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
+import 'styles/main.scss';
 
 import { Grid, Row, Col } from 'react-bootstrap';
 import { Header, Loader } from 'components';

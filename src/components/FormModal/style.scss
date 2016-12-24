@@ -1,0 +1,47 @@
+@import '~styles/colors';
+
+.Wrapper {
+ :global {
+  .modal-content {
+    border-radius: 0;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5)!important;
+  }
+
+  .modal-title {
+    color: white;
+  }
+
+  .panel {
+    margin-bottom: 0;
+    border: none!important;
+    box-shadow: none!important;
+  }
+
+  .panel-body {
+    padding: 0 15px;
+    border: none!important;
+    box-shadow: none!important;
+  }
+ }
+}
+
+.Header {
+  background: $natus-black!important;
+
+  :global(.close) {
+    color: white;
+    opacity: 0.9;
+    margin-top: 2px!important;
+    font-weight: normal;
+    outline: none!important;
+  }
+}
+
+.Title {
+  padding: 0 15px;
+
+  :global(.fa) {
+    font-size: 18px;
+    padding-right: 10px;
+  }
+}

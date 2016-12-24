@@ -2,6 +2,9 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+// UI
+import { Input, Checkbox, FormActions } from 'components';
+
 // PropTypes
 const { object, func, bool } = PropTypes;
 const propTypes = {
@@ -12,11 +15,27 @@ const propTypes = {
 
 const TransferForm = ({ handleSubmit, status, pristine }) => (
   <form onSubmit={handleSubmit}>
-    <Field name="url" component="input" type="text" placeholder="URL" />
-    <Field name="extract" id="extract" component="input" type="checkbox" /> Extract
-    <button type="submit" disabled={pristine || status.isLoading}>
-      Submit
-    </button>
+    <Field
+      name="url"
+      component={Input}
+      label="URL"
+      // validate={[validators.number]}
+    />
+
+    <Field
+      inline
+      name="extract"
+      component={Checkbox}
+      text="Extract"
+    />
+
+    <FormActions
+      submit={{
+        busy: status.isLoading,
+        disabled: pristine,
+        text: 'Submit',
+      }}
+    />
   </form>
 );
 

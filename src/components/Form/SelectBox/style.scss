@@ -1,0 +1,56 @@
+@import '~styles/colors';
+
+.Wrapper {
+  :global {
+    .Select {
+      font-size: 13px;
+    }
+
+    .is-focused > .Select-control {
+      border-color: $natus-blue;
+      box-shadow: none;
+    }
+
+    .is-focused:not(.is-open) > .Select-control {
+      border-color: $natus-blue;
+      box-shadow: none;
+    }
+
+    .Select-placeholder {
+      line-height: 33px;
+    }
+
+    .Select-control {
+      height: 32px;
+      border-radius: 2px;
+    }
+
+    .Select-value {
+      line-height: 33px!important;
+    }
+
+    .Select-input {
+      height: 32px;
+    }
+
+    .Select-arrow-zone {
+      padding-top: 2px;
+    }
+
+    .Select-menu-outer {
+      z-index: 50;
+    }
+  }
+}
+
+.Wrapper:global(.success) {
+  :global(.Select-control) {
+    border-color: #ccc;
+  }
+}
+
+.Wrapper:global(.error) {
+  :global(.Select-control) {
+    border-color: $natus-red;
+  }
+}

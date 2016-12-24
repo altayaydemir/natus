@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import loadApp from 'modules/app/actions';
 
 // UI
-import { AppLayout } from 'components';
+import { AppLayout, ModalRoot } from 'components';
 
 // Constants
 import ROUTES from 'constants/routes';
@@ -16,6 +16,7 @@ const { func, object, node } = PropTypes;
 const propTypes = {
   app: object,
   user: object,
+  ui: object,
   loadApp: func,
   children: node,
 };
@@ -26,7 +27,12 @@ class App extends Component {
   }
 
   render() {
-    const { app: { isLoaded }, user: { data, isAuthenticated }, children } = this.props;
+    const {
+      app: { isLoaded },
+      user: { data, isAuthenticated },
+      ui: { modal },
+      children,
+    } = this.props;
 
     return (
       <AppLayout
@@ -36,6 +42,8 @@ class App extends Component {
         user={data}
       >
         {children}
+
+        <ModalRoot data={modal} />
       </AppLayout>
     );
   }
@@ -46,6 +54,7 @@ App.propTypes = propTypes;
 const mapStateToProps = state => ({
   app: state.app,
   user: state.user,
+  ui: state.ui,
 });
 
 const mapDispatchToProps = {

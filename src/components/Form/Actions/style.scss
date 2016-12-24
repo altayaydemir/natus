@@ -1,0 +1,9 @@
+$btn-min-width: 100px;
+
+.Submit {
+  min-width: $btn-min-width;
+
+  :global(.fa) {
+    padding-left: 5px;
+  }
+}

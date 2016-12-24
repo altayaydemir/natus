@@ -1,0 +1,27 @@
+.Wrapper {
+  margin-top: -10px;
+  font-size: 14px;
+
+  :global(.checkbox) {
+    padding-top: 0;
+    margin-top: 0;
+    position: relative!important;
+    margin-right: 5px!important;
+  }
+
+  :global(.checkbox-inline) {
+    vertical-align: top!important;
+    input {
+      margin-top: 5px!important;
+    }
+  }
+
+
+  :global(.label) {
+    padding-top: 4px!important;
+  }
+}
+
+.Text {
+  color: #555!important;
+}

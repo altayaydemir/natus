@@ -1,0 +1,95 @@
+@import '~styles/colors';
+
+:global {
+  legend {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    font-size: 18px;
+    color: $natus-black;
+  }
+
+  .error-detail {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .has-feedback {
+    margin-bottom: 5px!important;
+  }
+}
+
+:global {
+  .form-group {
+    label {
+      padding-right: 0;
+      padding-top: 8px!important;
+    }
+
+    .control-label {
+      text-align: left!important;
+      color: $natus-black!important;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .form-control {
+      box-shadow: none;
+      border-radius: 2px!important;
+
+      &:focus {
+        outline: 0;
+        border-color: $natus-blue;
+        box-shadow: none;
+      }
+    }
+
+    .help-block {
+      color: #999999;
+      font-size: 13px;
+      margin-top: 6px;
+      margin-bottom: -6px;
+
+      .fa {
+        font-size: 13px;
+        padding-right: 5px;
+      }
+    }
+  }
+
+  .form-group.has-error {
+    margin-bottom: 5!important;
+
+    .form-control {
+      box-shadow: none;
+      border-color: $natus-red;
+
+      &:focus {
+        outline: 0;
+        box-shadow: none;
+        border-color: $natus-red;
+      }
+    }
+
+    .help-block {
+      color: $natus-red;
+    }
+  }
+
+  .form-group.has-success {
+    .form-control {
+      box-shadow: none;
+      border-color: #ccc;
+
+      &:focus {
+        outline: 0;
+        box-shadow: none;
+        border-color: $natus-blue;
+      }
+    }
+
+    .help-block {
+      color: #999999;
+    }
+  }
+}

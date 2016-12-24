@@ -5,9 +5,13 @@ import { connect } from 'react-redux';
 // Actions
 import { addTransfer } from 'modules/transfers/actions';
 import { getFiles } from 'modules/files/actions';
+import { hideModal } from 'modules/ui/actions';
 
 // UI
-import { TransferForm } from 'components';
+import { FormModal, TransferForm } from 'components';
+
+// Constants
+import ICONS from 'constants/icons';
 
 // PropTypes
 const { func, object } = PropTypes;
@@ -16,6 +20,8 @@ const propTypes = {
   files: object,
   transfers: object,
   addTransfer: func,
+  modal: object,
+  hideModal: func,
 };
 
 class TransferAdd extends Component {
@@ -36,18 +42,21 @@ class TransferAdd extends Component {
   }
 
   render() {
-    const { files, transfers: { adding } } = this.props;
+    const { files, transfers: { adding }, modal, hideModal } = this.props;
 
     return (
-      <div>
-        {files.list.isLoaded ?
-          <TransferForm
-            status={adding}
-            onSubmit={this.onSubmit}
-          /> :
-          'Loading...'
-        }
-      </div>
+      <FormModal
+        {...modal}
+        title="Add Transfer"
+        isLoaded={files.list.isLoaded}
+        onHide={() => hideModal()}
+        icon={ICONS.ADD_TRANSFER}
+      >
+        <TransferForm
+          status={adding}
+          onSubmit={this.onSubmit}
+        />
+      </FormModal>
     );
   }
 }
@@ -57,11 +66,13 @@ TransferAdd.propTypes = propTypes;
 const mapStateToProps = state => ({
   files: state.files,
   transfers: state.transfers,
+  modal: state.ui.modal,
 });
 
 const mapDispatchToProps = {
   getFiles,
   addTransfer,
+  hideModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransferAdd);
