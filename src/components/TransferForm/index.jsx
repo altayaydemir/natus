@@ -24,7 +24,7 @@ const TransferForm = ({ handleSubmit, status, pristine, submitSucceeded }) => (
     <Field
       name="url"
       component={Input}
-      label="URL"
+      label="URL or Magnet Link"
       required
       validate={[validators.required]}
     />

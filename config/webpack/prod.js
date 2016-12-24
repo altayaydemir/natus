@@ -11,7 +11,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const extractCSS = new ExtractTextPlugin('styles/[name].[hash].css', { allChunks: true });
 
-module.exports = merge(baseConfig, {
+module.exports = merge({}, baseConfig, {
   debug: false,
   devtool: false,
 
@@ -21,7 +21,6 @@ module.exports = merge(baseConfig, {
     ],
     vendor: [
       'babel-polyfill',
-      'whatwg-fetch',
       'react',
       'react-dom',
       'react-router',
@@ -30,14 +29,7 @@ module.exports = merge(baseConfig, {
       'redux-form',
       'redux-thunk',
       'react-bootstrap',
-      'd3',
-      'moment',
-      'react-calendar-heatmap',
-      'react-dual-list-box',
       'react-select',
-      'react-sortable-hoc',
-      'react-tooltip',
-      'react-virtualized',
     ],
   },
 

@@ -7,7 +7,7 @@ const baseConfig = require('./base');
 const merge = require('lodash.merge');
 
 // Constants
-module.exports = merge(baseConfig, {
+module.exports = merge({}, baseConfig, {
   devtool: 'eval',
 
   entry: {
@@ -16,7 +16,6 @@ module.exports = merge(baseConfig, {
       'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
       'babel-polyfill',
-      'whatwg-fetch',
       './src/index.jsx',
     ],
   },
