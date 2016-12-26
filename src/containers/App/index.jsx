@@ -3,11 +3,12 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
 // Actions
-import loadApp from 'modules/app/actions';
+import { loadApp } from 'modules/app/actions';
 import { logOut } from 'modules/user/actions';
 import { showModal } from 'modules/ui/actions';
 
 // UI
+import ErrorContainer from 'containers/Error';
 import { AppLayout, ModalRoot } from 'components';
 
 // Constants
@@ -32,7 +33,7 @@ class App extends Component {
 
   render() {
     const {
-      app: { isLoaded },
+      app: { isLoaded, error },
       user: { data, isAuthenticated },
       ui: { modal },
       children,
@@ -51,8 +52,7 @@ class App extends Component {
           onLogout: () => logOut(),
         }}
       >
-        {children}
-
+        {error > 0 ? <ErrorContainer /> : children}
         <ModalRoot data={modal} />
       </AppLayout>
     );

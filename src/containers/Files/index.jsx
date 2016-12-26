@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getFiles } from 'modules/files/actions';
 
 // UI
-import { FileList } from 'components';
+import { SectionHeader, FileList } from 'components';
 
 // PropTypes
 const { func, object } = PropTypes;
@@ -25,6 +25,8 @@ class Files extends Component {
 
     return (
       <div>
+        <SectionHeader title="Your Files" />
+
         <FileList
           data={list.data}
           isLoaded={list.isLoaded}

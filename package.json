@@ -41,7 +41,8 @@
     "react-select": "^1.0.0-rc.2",
     "redux": "3.6.0",
     "redux-form": "6.3.2",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "video.js": "^5.14.1"
   },
   "devDependencies": {
     "autoprefixer": "6.5.3",

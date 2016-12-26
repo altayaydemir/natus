@@ -5,3 +5,4 @@ export { default as Files } from './Files';
 export { default as File } from './File';
 export { default as Transfers } from './Transfers';
 export { default as TransferAdd } from './TransferAdd';
+export { default as ErrorContainer } from './Error';

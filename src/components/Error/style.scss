@@ -1,0 +1,33 @@
+.Wrapper {
+  margin-top: 50px;
+
+  h1 {
+    margin-top: 0px;
+    font-size: 120px;
+    letter-spacing: 10px;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 18px;
+    margin: 20px auto 30px auto;
+  }
+
+  :global(.fa) {
+    font-size: 21px;
+    margin-right: 7px;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+
+  text-align: center;
+}

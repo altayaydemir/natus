@@ -47,6 +47,10 @@
 
   :global(.dropdown-menu li a) {
     color: black!important;
+
+    &:hover {
+      background: darken(white, 10)!important;
+    }
   }
 }
 

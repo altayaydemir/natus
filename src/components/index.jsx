@@ -22,6 +22,17 @@ export { default as FormActions } from './Form/Actions';
 // Utils
 export { default as ActionErrors } from './ActionErrors';
 export { default as Loader } from './Loader';
+export { default as SectionHeader } from './SectionHeader';
+export { default as VideoPlayer } from './VideoPlayer';
 
 // Files
 export { default as FileList } from './FileList';
+export { default as FileDetails } from './FileDetails';
+export { default as FileBreadcrumbs } from './FileBreadcrumbs';
+
+// Transfers
+export { default as TransferList } from './TransferList';
+
+// Errors
+export { default as ErrorServer } from './Error/Server';
+export { default as ErrorNotFound } from './Error/NotFound';

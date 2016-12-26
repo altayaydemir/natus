@@ -1,4 +1,4 @@
-import { GET_FILES, GET_FILE, CREATE_FOLDER, DELETE_FILES } from './types';
+import { GET_FILES, GET_FILE, CREATE_FOLDER, DELETE_FILES, CONVERSION } from './types';
 
 const initialState = {
   list: {
@@ -21,6 +21,11 @@ const initialState = {
   },
   deleting: {
     isLoading: true,
+    error: {},
+  },
+  converting: {
+    isLoading: true,
+    data: {},
     error: {},
   },
   createdFolders: [],
@@ -141,6 +146,35 @@ export default (state = initialState, action) => {
           ...state.deleting,
           isLoading: false,
           error: action.payload.error,
+        },
+      };
+
+    case CONVERSION.START:
+      return {
+        ...state,
+        converting: {
+          ...state.converting,
+          isLoading: true,
+        },
+      };
+
+    case CONVERSION.UPDATE:
+      return {
+        ...state,
+        converting: {
+          ...state.converting,
+          isLoading: true,
+          data: action.payload.data,
+        },
+      };
+
+    case CONVERSION.FINISH:
+      return {
+        ...state,
+        converting: {
+          ...state.converting,
+          isLoading: false,
+          data: action.payload.data,
         },
       };
 

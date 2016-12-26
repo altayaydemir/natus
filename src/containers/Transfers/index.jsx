@@ -7,7 +7,7 @@ import { getTransfers } from 'modules/transfers/actions';
 import { showModal } from 'modules/ui/actions';
 
 // UI
-import { Link } from 'react-router';
+import { TransferList } from 'components';
 
 // PropTypes
 const { func, object } = PropTypes;
@@ -48,17 +48,8 @@ class Transfers extends Component {
   }
 
   render() {
-    const { transfers: { list } } = this.props;
-
     return (
-      <div>
-        {list.isLoaded ? list.data.map(transfer => (
-          <Link key={transfer.id} to={`/transfers/${transfer.id}`}>
-            {transfer.id} || {transfer.name} || {transfer.percent_done}
-            <br />
-          </Link>
-        )) : 'Loading Transfer List'}
-      </div>
+      <TransferList {...this.props.transfers.list} />
     );
   }
 }

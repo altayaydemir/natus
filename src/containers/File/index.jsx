@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 // Actions
 import { getFile } from 'modules/files/actions';
 
+// UI
+import { FileDetails } from 'components';
+
 // PropTypes
 const { func, object } = PropTypes;
 const propTypes = {
@@ -19,15 +22,31 @@ class File extends Component {
     getFile(id, { stream_url: true });
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { files: { active: { isLoaded, data } }, params: { id } } = nextProps;
+
+    // Update Content in Case of Route Change
+    if (this.props.params.id !== id) {
+      this.props.getFile(id);
+    }
+
+    if (!this.props.files.active.isLoaded && isLoaded) {
+      this.checkFileType(data.parent);
+    }
+  }
+
+  checkFileType = (file) => {
+    console.log(file);
+  }
+
   render() {
-    const { files: { active } } = this.props;
+    const { files: { active: { isLoaded, data } } } = this.props;
 
     return (
-      <div>
-        {active.isLoaded &&
-          `File ${active.data.parent.name} (${active.data.parent.id}) is Loaded`
-        }
-      </div>
+      <FileDetails
+        data={data}
+        isLoaded={isLoaded}
+      />
     );
   }
 }

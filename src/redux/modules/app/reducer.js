@@ -1,7 +1,8 @@
-import LOAD_APP from './types';
+import { LOAD_APP, ERROR } from './types';
 
 const initialState = {
   isLoaded: false,
+  error: null,
 };
 
 export default (state = initialState, action) => {
@@ -14,6 +15,18 @@ export default (state = initialState, action) => {
     case LOAD_APP.FINISH:
       return {
         isLoaded: true,
+      };
+
+    case ERROR.UPDATE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case ERROR.CLEAR:
+      return {
+        ...state,
+        error: null,
       };
 
     default:

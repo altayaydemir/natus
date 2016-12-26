@@ -2,7 +2,7 @@ import { GET_TRANSFERS, GET_TRANSFER, ADD_TRANSFER } from './types';
 
 const initialState = {
   list: {
-    data: {},
+    data: [],
     isLoaded: false,
     error: {},
   },

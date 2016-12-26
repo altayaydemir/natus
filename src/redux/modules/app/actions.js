@@ -3,7 +3,7 @@ import { createAction } from 'helpers/factories';
 import tokenStorage from 'helpers/tokenStorage';
 
 // Types
-import LOAD_APP from './types';
+import { LOAD_APP, ERROR } from './types';
 
 // External Actions
 import fetchInfo from 'modules/user/actions';
@@ -14,7 +14,7 @@ const loadAppStart = () => createAction(LOAD_APP.START);
 const loadAppFinish = () => createAction(LOAD_APP.FINISH);
 
 // Thunk: Load App
-const loadApp = () => async (dispatch, getState) => {
+export const loadApp = () => async (dispatch, getState) => {
   dispatch(loadAppStart());
 
   const token = tokenStorage.get('token');
@@ -36,4 +36,6 @@ const loadApp = () => async (dispatch, getState) => {
   return dispatch(loadAppFinish());
 };
 
-export default loadApp;
+// Action Creators: Error Handler
+export const updateError = data => createAction(ERROR.UPDATE, data);
+export const clearError = () => createAction(ERROR.CLEAR);

@@ -6,6 +6,7 @@ import { GET_TRANSFERS, GET_TRANSFER, ADD_TRANSFER } from './types';
 
 // External Actions
 import { push } from 'react-router-redux';
+import { hideModal } from 'modules/ui/actions';
 
 // Action Creators: Get Transfers
 const getTransfersRequest = meta => createAction(GET_TRANSFERS.REQUEST, {}, meta);
@@ -53,7 +54,8 @@ export const addTransfer = (formData, params = {}) => async (dispatch, getState,
   try {
     const { data: { transfer } } = await Api.post('/transfers/add', formData, params);
     dispatch(addTransferSuccess(transfer));
-    return dispatch(push(`/files/${transfer.save_parent_id}`));
+    dispatch(hideModal());
+    return dispatch(push('/transfers'));
   } catch (error) {
     return dispatch(addTransferFailure(error.response.data));
   }
