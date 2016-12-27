@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
 // Actions
-import { getFile } from 'modules/files/actions';
+import { getFile, convertToMp4 } from 'modules/files/actions';
 import { push } from 'react-router-redux';
 
 // UI
@@ -16,6 +16,7 @@ const propTypes = {
   getFile: func,
   params: object,
   push: func,
+  convertToMp4: func,
 };
 
 class File extends Component {
@@ -56,7 +57,11 @@ class File extends Component {
   }
 
   checkFileType = (file) => {
-    console.log(file);
+    const { convertToMp4, files: { converting } } = this.props;
+
+    if (!converting.isLoading && file.content_type !== 'video/mp4') {
+      convertToMp4(file.id);
+    }
   }
 
   render() {
@@ -79,6 +84,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getFile,
+  convertToMp4,
   push,
 };
 

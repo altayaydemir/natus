@@ -20,11 +20,11 @@ const initialState = {
     error: {},
   },
   deleting: {
-    isLoading: true,
+    isLoading: false,
     error: {},
   },
   converting: {
-    isLoading: true,
+    isLoading: false,
     data: {},
     error: {},
   },

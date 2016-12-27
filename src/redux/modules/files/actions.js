@@ -2,7 +2,13 @@
 import { createAction } from 'helpers/factories';
 
 // Types
-import { GET_FILES, GET_FILE, CREATE_FOLDER, DELETE_FILES } from './types';
+import {
+  GET_FILES,
+  GET_FILE,
+  CREATE_FOLDER,
+  DELETE_FILES,
+  CONVERSION,
+} from './types';
 
 // External Actions
 import { push } from 'react-router-redux';
@@ -90,5 +96,33 @@ export const createFolder = (formData, params = {}) => async (dispatch, getState
     return dispatch(showModal('ADD_TRANSFER'));
   } catch (error) {
     return dispatch(createFolderFailure(error));
+  }
+};
+
+// Action Creators: Convert Video
+const startConversion = data => createAction(CONVERSION.START, { data });
+const updateConversion = data => createAction(CONVERSION.UPDATE, { data });
+// const finishConversion = data => createAction(CONVERSION.FINISH, { data });
+const conversionFailure = error => createAction(CONVERSION.FAILURE, { error });
+
+// Thunk: Convert To Mp4
+export const convertToMp4 = (id, params = {}) => async (dispatch, getState, Api) => {
+  try {
+    const { data } = await Api.post(`/files/${id}/mp4`, { id }, params);
+
+    return dispatch(startConversion(data));
+  } catch (error) {
+    return dispatch(conversionFailure(error));
+  }
+};
+
+// Thunk: Create Folder
+export const getConversionStatus = (id, params = {}) => async (dispatch, getState, Api) => {
+  try {
+    const { data } = await Api.get(`/files/${id}/mp4`, params);
+
+    return dispatch(updateConversion(data));
+  } catch (error) {
+    return dispatch(conversionFailure(error));
   }
 };
