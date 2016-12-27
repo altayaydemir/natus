@@ -13,19 +13,27 @@ const propTypes = {
   active: object,
 };
 
+const truncateString = (string, n) => string.length > n ? `${string.substr(0, n)}...` : string;
+
 const FileBreadcrumbs = ({ data, active }) => data.length > 0 && (
   <div className={style.Wrapper}>
     <Breadcrumb>
       {data.map((item, index) => (
-        <LinkContainer to={`/files/${item[0]}`} key={index}>
+        <LinkContainer
+          key={index}
+          to={`/files/${item[0]}`}
+          title={item[1]}
+        >
           <Breadcrumb.Item>
-            {item[1]}
+            {truncateString(item[1], 25)}
           </Breadcrumb.Item>
         </LinkContainer>
       ))}
 
       <Breadcrumb.Item active>
-        {active.name}
+        <span title={active.name}>
+          {truncateString(active.name, 25)}
+        </span>
       </Breadcrumb.Item>
     </Breadcrumb>
   </div>

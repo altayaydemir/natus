@@ -2,8 +2,12 @@
 import React, { PropTypes } from 'react';
 
 // UI
-import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import { Loader } from 'components';
+
+// Helpers
+import { humanizeBytes } from 'helpers/utils';
 
 // PropTypes
 const { object, bool } = PropTypes;
@@ -12,18 +16,31 @@ const propTypes = {
   isLoaded: bool,
 };
 
-const FileList = ({ data, isLoaded }) => (
-  <div>
-    {!isLoaded ?
-      <Loader /> :
-      data.files.map(file => (
-        <Link key={file.id} to={`/files/${file.id}`}>
-          {file.name} - {file.id}
-          <br />
-        </Link>
-      ))
-    }
-  </div>
+const FileList = ({ data, isLoaded }) => !isLoaded ? <Loader /> : (
+  <ListGroup>
+    {data.files.map(file => (
+      <LinkContainer key={file.id} to={`/files/${file.id}`}>
+        <ListGroupItem>
+
+          <img
+            src={file.icon}
+            alt="icon"
+            style={{ marginRight: 14 }}
+          />
+
+          <span
+            style={{ marginRight: 7, fontWeight: 600 }}
+          >
+            {file.name}
+          </span>
+
+          <small>
+            {humanizeBytes(file.size)}
+          </small>
+        </ListGroupItem>
+      </LinkContainer>
+    ))}
+  </ListGroup>
 );
 
 FileList.propTypes = propTypes;
