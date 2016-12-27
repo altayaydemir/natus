@@ -12,9 +12,11 @@ const initialState = {
     error: {},
   },
   adding: {
+    data: {},
     isLoading: false,
     error: {},
   },
+  addedTransfers: [],
 };
 
 export default (state = initialState, action) => {
@@ -90,6 +92,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         adding: {
+          data: action.payload.data,
           isLoading: false,
           error: {},
         },

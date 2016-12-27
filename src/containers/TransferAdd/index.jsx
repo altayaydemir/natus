@@ -30,12 +30,15 @@ class TransferAdd extends Component {
   }
 
   onSubmit = (formData) => {
-    const { files: { list: { data: { files } } }, addTransfer } = this.props;
-    const recentFolder = files.filter(file => file.content_type === 'application/x-directory')[0];
+    const { files: { createdFolders, list: { data: { files } } }, addTransfer } = this.props;
+
+    const recentFolder = createdFolders.length > 0 ?
+      createdFolders.reverse()[0] :
+      files.filter(file => file.content_type === 'application/x-directory')[0].id;
 
     formData = {
       ...formData,
-      save_parent_id: recentFolder.id,
+      save_parent_id: recentFolder,
     };
 
     return addTransfer(formData);

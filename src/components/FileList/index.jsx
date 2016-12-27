@@ -21,7 +21,6 @@ const FileList = ({ data, isLoaded }) => !isLoaded ? <Loader /> : (
     {data.files.map(file => (
       <LinkContainer key={file.id} to={`/files/${file.id}`}>
         <ListGroupItem>
-
           <img
             src={file.icon}
             alt="icon"

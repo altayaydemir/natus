@@ -20,11 +20,5 @@ export default {
     },
   ],
 
-  user: [
-    {
-      to: '/account',
-      name: 'Account Settings',
-      icon: '',
-    },
-  ],
+  user: [],
 };

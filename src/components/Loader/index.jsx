@@ -1,17 +1,14 @@
 // Core
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-// PropTypes
-const propTypes = {
-  size: PropTypes.string,
-};
-
-const Loader = props => (
-  <div>
-    Loader {props.size}
+const Loader = () => (
+  <div style={{ marginTop: '30px', textAlign: 'center' }}>
+    <img
+      width="300px"
+      src="http://img.ffffound.com/static-data/assets/6/f71fbabb835aebca4489ba2e0d5cd6aff3ad528c_m.gif"
+      alt="Loader"
+    />
   </div>
 );
-
-Loader.propTypes = propTypes;
 
 export default Loader;

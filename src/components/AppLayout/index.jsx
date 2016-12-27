@@ -28,7 +28,7 @@ const propTypes = {
 const AppLayout = ({ isLoading, isAuthenticated, routes, children, user, headerActions }) => (
   <div className={style.App}>
     {isLoading ?
-      <Loader size="big" /> :
+      <Loader /> :
       <div className={style.AppContent}>
         <Header
           {...headerActions}

@@ -55,6 +55,7 @@ export const addTransfer = (formData, params = {}) => async (dispatch, getState,
     const { data: { transfer } } = await Api.post('/transfers/add', formData, params);
     dispatch(addTransferSuccess(transfer));
     dispatch(hideModal());
+    dispatch(getTransfers());
     return dispatch(push('/transfers'));
   } catch (error) {
     return dispatch(addTransferFailure(error.response.data));

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // Actions
 import { getFile } from 'modules/files/actions';
+import { push } from 'react-router-redux';
 
 // UI
 import { FileDetails } from 'components';
@@ -14,6 +15,7 @@ const propTypes = {
   files: object,
   getFile: func,
   params: object,
+  push: func,
 };
 
 class File extends Component {
@@ -23,16 +25,33 @@ class File extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { files: { active: { isLoaded, data } }, params: { id } } = nextProps;
+    const { files: { active: { data, isLoaded } }, params: { id } } = nextProps;
 
     // Update Content in Case of Route Change
     if (this.props.params.id !== id) {
       this.props.getFile(id);
     }
 
-    if (!this.props.files.active.isLoaded && isLoaded) {
-      this.checkFileType(data.parent);
+    // Check File Type for Challange instructions
+    if (this.props.params.id === id && isLoaded) {
+      if (data.parent.content_type === 'application/x-directory') {
+        this.identifyBiggestFile(data);
+      } else if (data.parent.file_type === 'VIDEO') {
+        this.checkFileType(data.parent);
+      }
     }
+  }
+
+  identifyBiggestFile = (data) => {
+    const biggestVideoFile = data.files
+      .filter(item => item.file_type === 'VIDEO')
+      .sort((a, b) => b.size - a.size)[0];
+
+    if (biggestVideoFile) {
+      return this.props.push(`/files/${biggestVideoFile.id}`);
+    }
+
+    return console.log(this.props.params.id, 'doesnt contain video files');
   }
 
   checkFileType = (file) => {
@@ -59,6 +78,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getFile,
+  push,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(File);

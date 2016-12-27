@@ -6,6 +6,7 @@ import { GET_FILES, GET_FILE, CREATE_FOLDER, DELETE_FILES } from './types';
 
 // External Actions
 import { push } from 'react-router-redux';
+import { showModal } from 'modules/ui/actions';
 
 // Action Creators: Get Files
 const getFilesRequest = () => createAction(GET_FILES.REQUEST);
@@ -86,7 +87,8 @@ export const createFolder = (formData, params = {}) => async (dispatch, getState
     // Bind delete files action to beforeunload event
     window.onbeforeunload = () => dispatch(deleteFiles());
 
-    return dispatch(push(`/files/${file.id}`));
+    dispatch(push('/transfers'));
+    return dispatch(showModal('ADD_TRANSFER'));
   } catch (error) {
     return dispatch(createFolderFailure(error));
   }

@@ -28,7 +28,7 @@ const Header = ({ routes, user, isAuthenticated, onAddTransfer, onLogout }) => (
     <Navbar.Header>
       <Navbar.Brand>
         <Link to="/">
-          Natus
+          🤔 natus 🤔
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle />

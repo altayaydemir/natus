@@ -5,7 +5,7 @@ const errorHandler = store => next => (action) => {
   if (action.payload && action.payload.error) {
     const { error } = action.payload;
 
-    if (error.response.status === 404 || error.response.status === 500) {
+    if (error.response && (error.response.status === 404 || error.response.status === 500)) {
       store.dispatch(hideModal());
       return store.dispatch(updateError(error.response.status));
     }

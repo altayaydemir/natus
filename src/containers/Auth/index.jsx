@@ -43,13 +43,18 @@ class Authenticate extends Component {
     const { user: { isLoading } } = this.props;
 
     return (
-      <div>
-        {isLoading ?
-          'Authenticating...' :
-          <a href={this.authURL}>
-           Authenticate
-          </a>
-        }
+      <div className="text-center">
+        <a
+          href={this.authURL}
+          className="btn btn-lg btn-black"
+          style={{
+            marginTop: '20vh',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}
+        >
+          {isLoading ? 'Logging in...' : 'Login'}
+        </a>
       </div>
     );
   }
