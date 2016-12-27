@@ -33,7 +33,6 @@ const FileDetails = ({ data, isLoaded }) => !isLoaded ? <Loader /> : (
     {data.parent.stream_url &&
       <VideoPlayer
         src={data.parent.stream_url}
-        metadata={data.parent.video_metadata}
       />
     }
 

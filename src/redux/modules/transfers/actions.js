@@ -2,7 +2,7 @@
 import { createAction } from 'helpers/factories';
 
 // Types
-import { GET_TRANSFERS, GET_TRANSFER, ADD_TRANSFER } from './types';
+import { GET_TRANSFERS, GET_TRANSFER, ADD_TRANSFER, CLEAR_ADDED_TRANSFERS } from './types';
 
 // External Actions
 import { push } from 'react-router-redux';
@@ -61,3 +61,5 @@ export const addTransfer = (formData, params = {}) => async (dispatch, getState,
     return dispatch(addTransferFailure(error.response.data));
   }
 };
+
+export const clearAddedTransfers = () => createAction(CLEAR_ADDED_TRANSFERS);

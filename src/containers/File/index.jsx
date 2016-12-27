@@ -48,10 +48,11 @@ class File extends Component {
       .sort((a, b) => b.size - a.size)[0];
 
     if (biggestVideoFile) {
+      console.log(`Playing biggest video file, ${biggestVideoFile.id}`);
       return this.props.push(`/files/${biggestVideoFile.id}`);
     }
 
-    return console.log(this.props.params.id, 'doesnt contain video files');
+    return console.log(`${this.props.params.id} doesnt contain any video file`);
   }
 
   checkFileType = (file) => {

@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
 // Actions
-import { getTransfers } from 'modules/transfers/actions';
+import { getTransfers, clearAddedTransfers } from 'modules/transfers/actions';
 import { showModal } from 'modules/ui/actions';
 import { push } from 'react-router-redux';
 
@@ -15,6 +15,7 @@ const { func, object } = PropTypes;
 const propTypes = {
   transfers: object,
   getTransfers: func,
+  clearAddedTransfers: func,
   showModal: func,
   push: func,
 };
@@ -41,13 +42,16 @@ class Transfers extends Component {
   }
 
   componentWillUnmount() {
-    console.log('CLEAR INTERVAL PLS');
     clearInterval(this.interval);
   }
 
   transferPolling = () => {
-    console.log('TRANSFER INTERVAL POLL');
-    const { transfers: { list: { data }, adding }, push, getTransfers } = this.props;
+    const {
+      transfers: { list: { data }, adding },
+      push,
+      getTransfers,
+      clearAddedTransfers,
+    } = this.props;
 
     const unFinishedTransfers = data.filter(transfer => transfer.status !== 'COMPLETED');
     const latestTransfer = data[data.length - 1];
@@ -59,6 +63,7 @@ class Transfers extends Component {
 
     // Redirect user to parrent file page
     if (latestTransfer.id === adding.data.id && latestTransfer.status === 'COMPLETED') {
+      clearAddedTransfers();
       push(`/files/${latestTransfer.save_parent_id}`);
     }
   }
@@ -78,6 +83,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getTransfers,
+  clearAddedTransfers,
   showModal,
   push,
 };

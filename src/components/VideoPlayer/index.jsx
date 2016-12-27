@@ -5,10 +5,9 @@ import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
 // PropTypes
-const { string, object } = PropTypes;
+const { string } = PropTypes;
 const propTypes = {
   src: string,
-  metadata: object,
 };
 
 class VideoPlayer extends Component {

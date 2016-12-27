@@ -1,4 +1,4 @@
-import { GET_TRANSFERS, GET_TRANSFER, ADD_TRANSFER } from './types';
+import { GET_TRANSFERS, GET_TRANSFER, ADD_TRANSFER, CLEAR_ADDED_TRANSFERS } from './types';
 
 const initialState = {
   list: {
@@ -102,9 +102,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         adding: {
+          data: {},
           isLoading: false,
           error: action.payload.error,
         },
+      };
+
+    case CLEAR_ADDED_TRANSFERS:
+      return {
+        ...state,
+        adding: initialState.adding,
       };
 
     default:

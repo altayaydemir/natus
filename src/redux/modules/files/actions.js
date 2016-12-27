@@ -38,7 +38,6 @@ export const getFile = (id, params = {}) => async (dispatch, getState, Api) => {
     const response = await Api.get('/files/list', {
       parent_id: id,
       breadcrumbs: true,
-      video_metadata_parent: true,
       stream_url_parent: true,
       ...params,
     });
