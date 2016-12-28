@@ -62,7 +62,7 @@ class Transfers extends Component {
     }
 
     // Redirect user to parrent file page
-    if (latestTransfer.id === adding.data.id && latestTransfer.status === 'COMPLETED') {
+    if (latestTransfer && latestTransfer.id === adding.data.id && latestTransfer.status === 'COMPLETED') {
       clearAddedTransfers();
       push(`/files/${latestTransfer.save_parent_id}`);
     }
